@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:58:58 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/13 14:43:07 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:15:11 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 int	main(void)
 {
-	ft_printf(RED"test\n"RES);
+	int	i;
+
+	i = 0;
+	while (++i)
+		ft_printf(RED"%i\n"RES, i);
 	return (EXIT_SUCCESS);
 }

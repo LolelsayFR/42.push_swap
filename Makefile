@@ -24,7 +24,7 @@ lib: hello $(LIBFT) $(FTPRINTF)
 
 $(NAME): ${LIBFT} ${FTPRINTF} ${SRC}
 	@echo "\e[48;2;0;155;0;1m Compile Push_Swap \e[0m\n"
-	cc ${SRC} ${GNL} ${LIBFT} ${FTPRINTF} ${CFLAGS} -o $(NAME)
+	cc ${SRC} ${LIBFT} ${FTPRINTF} ${CFLAGS} -o $(NAME)
 	@echo "\e[48;2;0;0;155;1m Done \e[0m\n"
 
 $(LIBFT):
