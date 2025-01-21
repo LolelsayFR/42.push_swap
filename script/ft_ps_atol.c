@@ -6,18 +6,13 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 04:07:02 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/20 21:11:54 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/01/22 00:13:45 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	set_zero(void *i)
-{
-	i = 0;
-}
-
-static void	ko(t_list **lst)
+static void	ko(t_list **lst, ...)
 {
 	ft_printfd(2, "Error\n");
 	ft_lstclear(lst, set_zero);
@@ -27,12 +22,13 @@ static void	ko(t_list **lst)
 
 static int	check_char(const char *str, t_list **lst)
 {
-	int	i;
+	long	i;
 
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] != '-' && str[i] != '+' && ft_isdigit(str[i] == 0))
+		if (str[i] == '\\'
+			|| (str[i] != '-' && str[i] != '+' && ft_isdigit(str[i] == 0)))
 			ko(lst);
 		i++;
 	}
@@ -40,6 +36,22 @@ static int	check_char(const char *str, t_list **lst)
 	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
 		i++;
 	return (i);
+}
+
+static int	as_check(long i, t_list *lst)
+{
+	t_list	*stack;
+
+	stack = lst;
+	while (stack != NULL)
+	{
+		if (PS_DEBUG)
+			ft_printfd(1, "Comp i = %i and c = %i\n", i, (long)stack->content);
+		if (stack->content && (long)stack->content == i)
+			return (RETURN_ERROR);
+		stack = stack->next;
+	}
+	return (RETURN_SUCCESS);
 }
 
 long	ft_ps_atol(const char *str, t_list **lst)
@@ -64,7 +76,7 @@ long	ft_ps_atol(const char *str, t_list **lst)
 		val = val * 10 + (str[i] - '0');
 		i++;
 	}
-	if (str[i] != '\0')
+	if (str[i] != '\0' || as_check(val * sign, *lst) == -1)
 		ko(lst);
 	ft_lstadd_back(lst, ft_lstnew((void *)(val * sign)));
 	return (val * sign);
