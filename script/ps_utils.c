@@ -6,17 +6,11 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 22:36:53 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/22 00:30:34 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/01/22 02:06:04 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	set_zero(void *i)
-{
-	(void)i;
-	i = 0;
-}
 
 void	ft_lstprintfd_ps(t_list *list_a, t_list *list_b, int fd)
 {
@@ -79,4 +73,28 @@ int	pre_check(char **av)
 	if (PS_DEBUG == 1)
 		ft_printfd(1, GRN"End of Push swap args..\n\n"RES);
 	return (RETURN_SUCCESS);
+}
+
+long	get_b(t_ps_data *d, int i)
+{
+	t_list	*tmp;
+
+	tmp = d->pile_b;
+	if (i > ft_lstsize(d->pile_b))
+		return (ft_printfd(2, "error, cant get long\n"), RETURN_ERROR);
+	while (--i && tmp != NULL)
+		tmp = tmp->next;
+	return ((long)tmp->content);
+}
+
+long	get_a(t_ps_data *d, int i)
+{
+	t_list	*tmp;
+
+	tmp = d->pile_a;
+	if (i > ft_lstsize(d->pile_a))
+		return (ft_printfd(2, "error, cant get long\n"), RETURN_ERROR);
+	while (--i && tmp != NULL)
+		tmp = tmp->next;
+	return ((long)tmp->content);
 }

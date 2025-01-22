@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:30:49 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/22 00:18:43 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/01/22 03:23:31 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <stdlib.h>
 # include "../modules/42.libft/libft.h"
 
-# define EXIT_SUCCES 1
 # define RED  "\x1B[31m"
 # define GRN  "\x1B[32m"
 # define YEL  "\x1B[33m"
@@ -43,6 +42,8 @@ void	ft_lstprintfd_ps(t_list *list_a, t_list *list_b, int fd);
 int		pre_check(char **av);
 void	set_zero(void *i);
 int		lst_is_sorted(t_list *lst);
+long	get_a(t_ps_data *d, int i);
+long	get_b(t_ps_data *d, int i);
 
 //Push swap instructions
 int		ps_sa(t_ps_data *d);
@@ -56,5 +57,10 @@ int		ps_rr(t_ps_data *d);
 int		ps_rra(t_ps_data *d);
 int		ps_rrb(t_ps_data *d);
 int		ps_rrr(t_ps_data *d);
+
+//Algo
+void	sort_three(t_ps_data *d);
+void	sort_four(t_ps_data *d);
+void	sort_five(t_ps_data *d);
 
 #endif

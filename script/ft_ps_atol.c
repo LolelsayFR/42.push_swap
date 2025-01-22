@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 04:07:02 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/22 00:13:45 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/01/22 01:33:28 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ static void	ko(t_list **lst, ...)
 	ft_lstclear(lst, set_zero);
 	ft_alist_free();
 	exit(-1);
+}
+
+void	set_zero(void *i)
+{
+	(void)i;
+	i = 0;
 }
 
 static int	check_char(const char *str, t_list **lst)

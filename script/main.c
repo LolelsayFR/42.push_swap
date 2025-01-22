@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:58:58 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/22 00:38:00 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/01/22 04:03:07 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 static void	ft_push_swap(t_ps_data *d)
 {
-	if (lst_is_sorted(d->pile_a) == 1)
-		return ;
-	ps_rrr(d);
-	ps_rr(d);
-	ps_ss(d);
-	ft_lstprintfd_ps(d->pile_a, d->pile_b, 1);
+	if (ft_lstsize(d->pile_a) == 2)
+		ps_sa(d);
+	else if (ft_lstsize(d->pile_a) == 3)
+		sort_three(d);
+	else if (ft_lstsize(d->pile_a) == 4)
+		sort_four(d);
+	else if (ft_lstsize(d->pile_a) <= 5)
+		sort_five(d);
+	if (PS_DEBUG == 1)
+		ft_lstprintfd_ps(d->pile_a, d->pile_b, 1);
 }
 
 int	main(int ac, char **av)
@@ -40,9 +44,10 @@ int	main(int ac, char **av)
 	while (d->my_av[i])
 	{
 		if (d->my_av[i][0])
-			ft_ps_atol(d->my_av[i], &d->pile_a);
-		i++;
+			ft_ps_atol(d->my_av[i++], &d->pile_a);
 	}
+	if (lst_is_sorted(d->pile_a) == RETURN_SUCCESS)
+		return (EXIT_SUCCESS);
 	ft_push_swap(d);
 	ft_lstclear(&d->pile_a, set_zero);
 	ft_lstclear(&d->pile_b, set_zero);

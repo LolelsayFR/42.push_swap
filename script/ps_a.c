@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 22:38:02 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/22 00:14:08 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/01/22 02:45:43 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	ps_pa(t_ps_data *d)
 	if (ft_lstsize(d->pile_b) == 0)
 		return (RETURN_ERROR);
 	new_head = d->pile_b->next;
-	ft_lstadd_front(&d->pile_a, ft_lstnew(d->pile_b->content));
-	ft_lstdelone(d->pile_b, set_zero);
+	d->pile_b->next = d->pile_a;
+	d->pile_a = d->pile_b;
 	d->pile_b = new_head;
 	ft_printfd(1, "pa\n");
 	return (RETURN_SUCCESS);
