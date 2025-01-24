@@ -58,9 +58,14 @@ int		ps_rra(t_ps_data *d);
 int		ps_rrb(t_ps_data *d);
 int		ps_rrr(t_ps_data *d);
 
+//I can add super_swap 
+
 //Algo
 void	sort_three(t_ps_data *d);
 void	sort_four(t_ps_data *d);
 void	sort_five(t_ps_data *d);
+
+//I can add quicksort
+
 
 #endif
