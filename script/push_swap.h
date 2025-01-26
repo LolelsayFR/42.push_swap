@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:30:49 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/22 03:23:31 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/01/26 04:45:02 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ typedef struct s_ps_data
 	t_list	*actions;
 	t_list	*logs;
 	char	**my_av;
+	long	min;
+	long	max;
+	int		chunk_size;
 }	t_ps_data;
 
 //Push swap init and utils
@@ -41,9 +44,10 @@ long	ft_ps_atol(const char *str,	t_list **lst);
 void	ft_lstprintfd_ps(t_list *list_a, t_list *list_b, int fd);
 int		pre_check(char **av);
 void	set_zero(void *i);
-int		lst_is_sorted(t_list *lst);
+int		lst_is_sorted(t_list *lst, int order);
 long	get_a(t_ps_data *d, int i);
 long	get_b(t_ps_data *d, int i);
+int		init_minmax(t_ps_data *data);
 
 //Push swap instructions
 int		ps_sa(t_ps_data *d);
@@ -57,15 +61,16 @@ int		ps_rr(t_ps_data *d);
 int		ps_rra(t_ps_data *d);
 int		ps_rrb(t_ps_data *d);
 int		ps_rrr(t_ps_data *d);
-
-//I can add super_swap 
+void	ps_pa_all(t_ps_data *d);
+void	ps_pb_all(t_ps_data *d);
 
 //Algo
 void	sort_three(t_ps_data *d);
 void	sort_four(t_ps_data *d);
 void	sort_five(t_ps_data *d);
-
-//I can add quicksort
-
-
+void	ps_turksort(t_ps_data *d);
+void	ps_turk_to_a(t_ps_data *d);
+void	ps_turk_to_b(t_ps_data *d);
+int		is_in_current_chunk(t_ps_data *d, int chunk_num);
+int		find_max_position(t_ps_data *d);
 #endif

@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:52:01 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/20 18:20:34 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:35:54 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,26 @@ char	**ft_spacer_split_lst(char const *s)
 	result = ft_splitinject(s, result);
 	ft_lstadd_back(ft_alist(), ft_lstnew(result));
 	return (result);
+}
+
+int	init_minmax(t_ps_data *data)
+{
+	t_list		*stack;
+
+	stack = data->pile_a;
+	data->max = (long)stack->content;
+	data->min = data->max;
+	while (stack != NULL)
+	{
+		if ((long)stack->content > data->max)
+			data->max = (long)stack->content;
+		if ((long)stack->content < data->min)
+			data->min = (long)stack->content;
+		stack = stack->next;
+	}
+	if (PS_DEBUG)
+		ft_printfd(1, YEL"Min = %d \nMax = %d\n\n"RES, data->min, data->max);
+	return (RETURN_SUCCESS);
 }
 
 //int	main(int argc, char *argv[])

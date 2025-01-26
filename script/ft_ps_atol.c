@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 04:07:02 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/22 01:33:28 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:29:39 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,21 @@ static int	check_char(const char *str, t_list **lst)
 
 static int	as_check(long i, t_list *lst)
 {
-	t_list	*stack;
+	t_list		*stack;
+	static int	zero;
 
+	if (i == 0)
+		zero++;
+	if (zero == 2 || i < INT_MIN || i > INT_MAX)
+		return (-1);
 	stack = lst;
 	while (stack != NULL)
 	{
-		if (PS_DEBUG)
-			ft_printfd(1, "Comp i = %i and c = %i\n", i, (long)stack->content);
-		if (stack->content && (long)stack->content == i)
-			return (RETURN_ERROR);
+		if ((long)stack->content == i)
+			return (-1);
 		stack = stack->next;
 	}
-	return (RETURN_SUCCESS);
+	return (0);
 }
 
 long	ft_ps_atol(const char *str, t_list **lst)
@@ -66,8 +69,8 @@ long	ft_ps_atol(const char *str, t_list **lst)
 	long	sign;
 	long	i;
 
-	if (!str)
-		return (0);
+	if (!str || (!ft_isdigit(str[0]) && str[1] == '\0'))
+		ko(lst);
 	val = 0;
 	sign = 1;
 	i = check_char(str, lst);

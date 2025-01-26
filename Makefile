@@ -8,7 +8,9 @@ SRC				=	script/main.c\
 					script/ps_b.c\
 					script/ps_both.c\
 					script/ps_utils.c\
+					script/ps_utils_2.c\
 					script/ps_algo.c\
+					script/ps_turksort.c\
 
 LIBFT_PATH		=	./modules/42.libft
 LIBFT			=	$(LIBFT_PATH)/libft.a

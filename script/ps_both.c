@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 00:33:00 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/22 00:36:09 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/01/24 17:01:38 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ps_rr(t_ps_data *d)
 
 int	ps_rrr(t_ps_data *d)
 {
-	if (ft_lstsize(d->pile_b) == 1 && ft_lstsize(d->pile_b) == 1)
+	if (ft_lstsize(d->pile_b) == 1 && ft_lstsize(d->pile_a) == 1)
 		return (RETURN_ERROR);
 	ft_lst_unrotate(&d->pile_a, 1);
 	ft_lst_unrotate(&d->pile_b, 1);

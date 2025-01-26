@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 22:38:02 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/22 02:46:59 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:39:52 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,16 @@ int	ps_rrb(t_ps_data *d)
 	ft_lst_unrotate(&d->pile_b, 1);
 	ft_printfd(1, "rrb\n");
 	return (RETURN_SUCCESS);
+}
+
+void	ps_pb_all(t_ps_data *d)
+{
+	int	i;
+
+	i = ft_lstsize(d->pile_a);
+	while (i)
+	{
+		ps_pb(d);
+		i--;
+	}
 }
