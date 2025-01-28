@@ -6,36 +6,11 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 16:47:57 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/26 04:40:30 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:19:26 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	turk_check_bigger_b(t_ps_data *d)
-{
-	if (ft_lstsize(d->pile_b) == 0 || ft_lstsize(d->pile_a) == 0)
-		return (-1);
-	else if (get_a(d, 1) > get_b(d, 1))
-		return (ps_pb(d));
-	else if (ft_lstsize(d->pile_b) >= 2
-		&& get_a(d, 1) < get_b(d, 1) && get_a(d, 1) > get_b(d, 2))
-		return (ps_pb(d), ps_sb(d));
-	return (0);
-}
-
-int	turk_check_smaller_b(t_ps_data *d)
-{
-	if (ft_lstsize(d->pile_b) == 0 || ft_lstsize(d->pile_a) == 0)
-		return (-1);
-	else if (get_a(d, 1) < get_b(d, ft_lstsize(d->pile_b)))
-		return (ps_pb(d), ps_rb(d));
-	else if (get_a(d, 1) > get_b(d, ft_lstsize(d->pile_b))
-		&& ft_lstsize(d->pile_b) >= 2
-		&& (get_a(d, 1) < get_b(d, ft_lstsize(d->pile_b) - 1)))
-		return (ps_rrb(d), ps_pb(d), ps_rb((d)), ps_rb(d));
-	return (0);
-}
 
 void	ps_turk_to_b(t_ps_data *d)
 {
@@ -49,7 +24,7 @@ void	ps_turk_to_b(t_ps_data *d)
 		if (is_in_current_chunk(d, chunk))
 		{
 			ps_pb(d);
-			if (ft_lstsize(d->pile_b) > 1 && get_b(d, 1) < get_b(d, 2))
+			if ((ft_lstsize(d->pile_b) > 1 && get_b(d, 1) < get_b(d, 2)))
 				ps_rb(d);
 		}
 		else
@@ -95,10 +70,10 @@ void	ps_turk_to_a(t_ps_data *d)
 
 void	ps_turksort(t_ps_data *d)
 {
-	if (ft_lstsize(d->pile_a) >= 100)
+	if (ft_lstsize(d->pile_a) > 100)
 		d->chunk_size = ft_lstsize(d->pile_a) / 10;
 	else
-		d->chunk_size = ft_lstsize(d->pile_a) / 5;
+		d->chunk_size = ft_lstsize(d->pile_a) / 6;
 	ps_turk_to_b(d);
 	ps_turk_to_a(d);
 }

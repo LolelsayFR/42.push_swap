@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 01:26:21 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/26 05:15:50 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:53:34 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,29 +72,13 @@ void	sort_five(t_ps_data *d)
 	ps_pb(d);
 	sort_four(d);
 	if (get_b(d, 1) > get_a(d, 4))
-	{
-		ps_pa(d);
-		ps_ra(d);
-	}
+		return (ps_pa(d), (void)ps_ra(d));
 	else if (get_b(d, 1) < get_a(d, 1))
-		ps_pa(d);
+		return ((void)ps_pa(d));
 	else if (get_b(d, 1) > get_a(d, 1) && get_b(d, 1) < get_a(d, 2))
-	{
-		ps_pa(d);
-		ps_sa(d);
-	}
+		return (ps_pa(d), (void)ps_sa(d));
 	else if (get_b(d, 1) > get_a(d, 2) && get_b(d, 1) < get_a(d, 3))
-	{
-		ps_ra(d);
-		ps_pa(d);
-		ps_sa(d);
-		ps_rra(d);
-	}
+		return (ps_ra(d), ps_pa(d), ps_sa(d), (void)ps_rra(d));
 	else
-	{
-		ps_rra(d);
-		ps_pa(d);
-		ps_ra(d);
-		ps_ra(d);
-	}
+		return (ps_rra(d), ps_pa(d), ps_ra(d), (void)ps_ra(d));
 }
