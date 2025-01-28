@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:30:49 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/26 04:45:02 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/01/28 22:08:01 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,11 @@ void	ps_pb_all(t_ps_data *d);
 void	sort_three(t_ps_data *d);
 void	sort_four(t_ps_data *d);
 void	sort_five(t_ps_data *d);
-void	ps_turksort(t_ps_data *d);
+void	ps_sort(t_ps_data *d);
 void	ps_turk_to_a(t_ps_data *d);
 void	ps_turk_to_b(t_ps_data *d);
 int		is_in_current_chunk(t_ps_data *d, int chunk_num);
 int		find_max_position(t_ps_data *d);
+int		find_first_chunk(t_ps_data *d, int chunk);
+void	better_ra(t_ps_data *d, int chunk);
 #endif

@@ -1,18 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_turksort.c                                      :+:      :+:    :+:   */
+/*   ps_sort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 16:47:57 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/28 19:19:26 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/01/28 23:33:36 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_turk_to_b(t_ps_data *d)
+int	ps_ra_or_rra(t_ps_data *d, int chunk)
+{
+	int		i;
+	int		pos;
+	int		size;
+	long	start;
+
+	start = d->min + ((chunk - 1) * d->chunk_size);
+	i = 1;
+	pos = 1;
+	size = ft_lstsize(d->pile_a);
+	while (i <= size)
+	{
+		if (get_a(d, i) >= start && get_a(d, i) < start + d->chunk_size)
+		{
+			pos = i;
+			break ;
+		}
+		i++;
+	}
+	if ((ft_lstsize(d->pile_b) > 1 && get_b(d, 1) < get_b(d, 2)))
+		return (ps_rr(d), 1);
+	else if (pos != 1 && pos <= ft_lstsize(d->pile_a) / 2)
+		return (ps_ra(d), 1);
+	else if (pos != 1)
+		return (ps_rra(d), -1);
+	return (1);
+}
+
+void	ps_chunk_to_b(t_ps_data *d)
 {
 	int	chunk;
 	int	i;
@@ -22,15 +51,11 @@ void	ps_turk_to_b(t_ps_data *d)
 	while (ft_lstsize(d->pile_a) > 0)
 	{
 		if (is_in_current_chunk(d, chunk))
-		{
 			ps_pb(d);
-			if ((ft_lstsize(d->pile_b) > 1 && get_b(d, 1) < get_b(d, 2)))
-				ps_rb(d);
-		}
 		else
 		{
-			ps_ra(d);
-			if (i++ >= ft_lstsize(d->pile_a))
+			i += ps_ra_or_rra(d, chunk);
+			if (i >= ft_lstsize(d->pile_a))
 			{
 				chunk++;
 				i = 0;
@@ -39,7 +64,7 @@ void	ps_turk_to_b(t_ps_data *d)
 	}
 }
 
-void	ps_turk_to_a(t_ps_data *d)
+void	ps_to_a(t_ps_data *d)
 {
 	int	max_pos;
 	int	size_b;
@@ -68,12 +93,12 @@ void	ps_turk_to_a(t_ps_data *d)
 	}
 }
 
-void	ps_turksort(t_ps_data *d)
+void	ps_sort(t_ps_data *d)
 {
 	if (ft_lstsize(d->pile_a) > 100)
 		d->chunk_size = ft_lstsize(d->pile_a) / 10;
 	else
-		d->chunk_size = ft_lstsize(d->pile_a) / 6;
-	ps_turk_to_b(d);
-	ps_turk_to_a(d);
+		d->chunk_size = 18;
+	ps_chunk_to_b(d);
+	ps_to_a(d);
 }

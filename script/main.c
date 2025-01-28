@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:58:58 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/26 04:43:56 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/01/28 22:09:04 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	ft_push_swap(t_ps_data *d)
 	else if (ft_lstsize(d->pile_a) <= 5)
 		sort_five(d);
 	else
-		ps_turksort(d);
+		ps_sort(d);
 	if (PS_DEBUG == 1)
 		ft_lstprintfd_ps(d->pile_a, d->pile_b, 1);
 }
