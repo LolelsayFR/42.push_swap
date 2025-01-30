@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 16:47:57 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/30 09:42:08 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/01/30 13:51:47 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,30 +64,43 @@ static void	ps_ra_or_rra(t_ps_data *d, int chunk)
 	size = ft_lstsize(d->pile_a);
 	while (i <= size)
 	{
-		if (get_a(d, i) >= start && get_a(d, i) < start + d->chunk_size)
+		if (get_a(d, i) >= start && get_a(d, i) < start + 1 + d->chunk_size)
 		{
 			pos = i;
 			break ;
 		}
 		i++;
 	}
-	if ((ft_lstsize(d->pile_b) > 1 && get_b(d, 1) < get_b(d, 2)))
+	ropti_a(d, pos - 1, ft_lstsize(d->pile_a));
+}
+
+static void	ps_rb_or_rr(t_ps_data *d, int chunk)
+{
+	if (!is_in_current_chunk(d, chunk + 1) && !is_in_current_chunk(d, chunk))
 		ps_rr(d);
-	else if (pos != 1)
-		ropti_a(d, pos - 1, ft_lstsize(d->pile_a));
+	else
+		ps_rb(d);
 }
 
 void	ps_chunk_to_b(t_ps_data *d)
 {
 	int	chunk;
-	int	i;
 
 	chunk = 1;
-	i = 0;
-	while (ft_lstsize(d->pile_a) > 0)
+	while (ft_lstsize(d->pile_a) > 3)
 	{
-		if (is_in_current_chunk(d, chunk))
+		if (is_in_current_chunk(d, chunk + 1))
+		{
 			ps_pb(d);
+			if (chunk % 2 == 0)
+				ps_rb_or_rr(d, chunk);
+		}
+		else if (is_in_current_chunk(d, chunk))
+		{
+			ps_pb(d);
+			if (chunk % 2 == 1)
+				ps_rb_or_rr(d, chunk);
+		}
 		else
 		{
 			if (!in_chunk_count(d, chunk))
@@ -95,34 +108,5 @@ void	ps_chunk_to_b(t_ps_data *d)
 			else
 				ps_ra_or_rra(d, chunk);
 		}
-	}
-}
-
-void	ps_to_a(t_ps_data *d)
-{
-	int	max_pos;
-	int	size_b;
-
-	while (d->pile_b)
-	{
-		size_b = ft_lstsize(d->pile_b);
-		max_pos = find_max_position(d) - 1;
-		if (max_pos <= size_b / 2)
-		{
-			while (max_pos > 0)
-			{
-				ps_rb(d);
-				max_pos--;
-			}
-		}
-		else
-		{
-			while (max_pos < size_b)
-			{
-				ps_rrb(d);
-				max_pos++;
-			}
-		}
-		ps_pa(d);
 	}
 }
