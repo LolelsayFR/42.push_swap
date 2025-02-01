@@ -11,6 +11,7 @@ SRC				=	script/main.c\
 					script/ps_utils_2.c\
 					script/ps_algo.c\
 					script/ps_sort.c\
+					script/ps_sort_2.c\
 
 LIBFT_PATH		=	./modules/42.libft
 LIBFT			=	$(LIBFT_PATH)/libft.a

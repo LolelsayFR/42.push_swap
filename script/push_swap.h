@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:30:49 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/30 09:31:35 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/01 05:48:33 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,41 +36,64 @@ typedef struct s_ps_data
 	long	min;
 	long	max;
 	int		chunk_size;
+	int		chunk;
 }	t_ps_data;
 
+typedef struct s_pile_info
+{
+	int		size_a;
+	int		size_b;
+	long	min_a;
+	long	max_a;
+	int		target_pos;
+	int		source_pos;
+}	t_pile_info;
+
+typedef struct s_cost
+{
+	int		pos;
+	int		total_cost;
+}	t_cost;
+
 //Push swap init and utils
-char	**ft_spacer_split_lst(char const *s);
-long	ft_ps_atol(const char *str,	t_list **lst);
-void	ft_lstprintfd_ps(t_list *list_a, t_list *list_b, int fd);
-int		pre_check(char **av);
-void	set_zero(void *i);
-int		lst_is_sorted(t_list *lst, int order);
-long	get_a(t_ps_data *d, int i);
-long	get_b(t_ps_data *d, int i);
-int		init_minmax(t_ps_data *data);
+char		**ft_spacer_split_lst(char const *s);
+long		ft_ps_atol(const char *str,	t_list **lst);
+void		ft_lstprintfd_ps(t_list *list_a, t_list *list_b, int fd);
+int			pre_check(char **av);
+void		set_zero(void *i);
+int			lst_is_sorted(t_list *lst, int order);
+long		get_a(t_ps_data *d, int i);
+long		get_b(t_ps_data *d, int i);
+int			init_minmax(t_ps_data *data);
+t_pile_info	init_pile_info(t_ps_data *d, int pos);
+long		get_min(t_list *lst);
+long		get_max(t_list *lst);
+int			comp_max(int a, int b);
+int			calculate_position_cost(t_ps_data *d, int pos);
+t_cost		find_best_position(t_ps_data *d);
 
 //Push swap instructions
-int		ps_sa(t_ps_data *d);
-int		ps_sb(t_ps_data *d);
-int		ps_ss(t_ps_data *d);
-int		ps_pa(t_ps_data *d);
-int		ps_pb(t_ps_data *d);
-int		ps_ra(t_ps_data *d);
-int		ps_rb(t_ps_data *d);
-int		ps_rr(t_ps_data *d);
-int		ps_rra(t_ps_data *d);
-int		ps_rrb(t_ps_data *d);
-int		ps_rrr(t_ps_data *d);
-void	ps_pa_all(t_ps_data *d);
-void	ps_pb_all(t_ps_data *d);
+int			ps_sa(t_ps_data *d);
+int			ps_sb(t_ps_data *d);
+int			ps_ss(t_ps_data *d);
+int			ps_pa(t_ps_data *d);
+int			ps_pb(t_ps_data *d);
+int			ps_ra(t_ps_data *d);
+int			ps_rb(t_ps_data *d);
+int			ps_rr(t_ps_data *d);
+int			ps_rra(t_ps_data *d);
+int			ps_rrb(t_ps_data *d);
+int			ps_rrr(t_ps_data *d);
+void		ps_pa_all(t_ps_data *d);
+void		ps_pb_all(t_ps_data *d);
 
 //Algo
-void	sort_three(t_ps_data *d);
-void	sort_four(t_ps_data *d);
-void	sort_five(t_ps_data *d);
-void	ps_sort(t_ps_data *d);
-void	ps_chunk_to_b(t_ps_data *d);
-void	ps_to_a(t_ps_data *d);
-int		is_in_current_chunk(t_ps_data *d, int chunk_num);
-int		find_max_position(t_ps_data *d);
+void		sort_three(t_ps_data *d);
+void		sort_four(t_ps_data *d);
+void		sort_five(t_ps_data *d);
+void		ps_sort(t_ps_data *d);
+void		ps_chunk_to_b(t_ps_data *d);
+void		ps_to_a(t_ps_data *d);
+int			is_in_current_chunk(t_ps_data *d, int chunk_num, int i);
+int			find_max_position(t_ps_data *d, char c);
 #endif

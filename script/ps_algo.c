@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 01:26:21 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/30 13:49:24 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/01 05:03:33 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,39 +86,9 @@ void	sort_five(t_ps_data *d)
 void	ps_sort(t_ps_data *d)
 {
 	if (ft_lstsize(d->pile_a) > 100)
-		d->chunk_size = ft_lstsize(d->pile_a) / 13;
+		d->chunk_size = 40;
 	else
-		d->chunk_size = ft_lstsize(d->pile_a) / 7;
+		d->chunk_size = 18;
 	ps_chunk_to_b(d);
-	sort_three(d);
 	ps_to_a(d);
-}
-
-void	ps_to_a(t_ps_data *d)
-{
-	int	max_pos;
-	int	size_b;
-
-	while (d->pile_b)
-	{
-		size_b = ft_lstsize(d->pile_b);
-		max_pos = find_max_position(d) - 1;
-		if (max_pos <= size_b / 2)
-		{
-			while (max_pos > 0)
-			{
-				ps_rb(d);
-				max_pos--;
-			}
-		}
-		else
-		{
-			while (max_pos < size_b)
-			{
-				ps_rrb(d);
-				max_pos++;
-			}
-		}
-		ps_pa(d);
-	}
 }
