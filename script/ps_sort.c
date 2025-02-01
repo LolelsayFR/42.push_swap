@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 16:47:57 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/01 06:49:39 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/01 07:57:15 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ps_ra_or_rra(t_ps_data *d, int chunk)
 	}
 	if ((ft_lstsize(d->pile_b) > 1 && get_b(d, 1) < get_b(d, 2)))
 		return (ps_rr(d), 1);
-	else if (pos != 1 && pos <= ft_lstsize(d->pile_a) / 2)
+	else if (pos != 1 && pos <= (size * 3) / 7)
 		return (ps_ra(d), 1);
 	else if (pos != 1)
 		return (ps_rra(d), -1);
@@ -70,9 +70,6 @@ void	ps_chunk_to_b(t_ps_data *d)
 		if (is_in_current_chunk(d, chunk, 1))
 		{
 			ps_pb(d);
-			if ((ft_lstsize(d->pile_b) > 1 && get_b(d, 1) < get_b(d, 2))
-				&& !is_in_current_chunk(d, chunk, 1))
-				ps_rr(d);
 		}
 		else
 		{
