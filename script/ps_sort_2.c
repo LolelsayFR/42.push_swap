@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 17:06:27 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/01 07:50:51 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/03 05:43:46 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,52 +16,64 @@ long	get_min(t_list *lst)
 {
 	t_list	*tmp;
 	long	min;
+	int		i;
+	int		res;
 
 	tmp = lst;
 	min = (long)tmp->content;
+	i = 1;
 	while (tmp != NULL)
 	{
 		if ((long)tmp->content < min)
+			res = i;
+		if ((long)tmp->content < min)
 			min = (long)tmp->content;
 		tmp = tmp->next;
+		i++;
 	}
-	return (min);
+	return (res);
 }
 
 long	get_max(t_list *lst)
 {
 	t_list	*tmp;
 	long	max;
+	int		i;
+	int		res;
 
 	tmp = lst;
 	max = (long)tmp->content;
+	i = 1;
 	while (tmp != NULL)
 	{
 		if ((long)tmp->content > max)
+			res = i;
+		if ((long)tmp->content > max)
 			max = (long)tmp->content;
 		tmp = tmp->next;
+		i++;
 	}
-	return (max);
+	return (res);
 }
 
 void	choose_rotate(t_ps_data *d, t_pile_info *info)
 {
-	if (info->source_pos == 1)
+	if (info->pos == 1)
 	{
 		if (info->target_pos <= ft_lstsize(d->pile_a) / 2)
 			ps_rra(d);
 		else
 			ps_ra(d);
 	}
-	if (info->source_pos <= ft_lstsize(d->pile_b) / 2)
+	if (info->pos <= ft_lstsize(d->pile_b) / 2)
 	{
 		ps_rr(d);
-		info->source_pos--;
+		info->pos--;
 	}
 	else
 	{
 		ps_rrr(d);
-		info->source_pos++;
+		info->pos++;
 	}
 }
 
@@ -100,7 +112,7 @@ void	ps_to_a(t_ps_data *d)
 	while (d->pile_b)
 	{
 		size_b = ft_lstsize(d->pile_b);
-		max_pos = find_max_position(d, 'b') - 1;
+		max_pos = get_max(d->pile_b) - 1;
 		if (max_pos <= size_b / 2)
 		{
 			while (max_pos > 0)

@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 23:26:21 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/01 06:11:11 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/03 06:06:25 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,54 +23,6 @@ int	is_in_current_chunk(t_ps_data *d, int chunk_num, int i)
 		&& get_b(d, i * -1) < start + d->chunk_size)
 		return (1);
 	return (0);
-}
-
-static int	find_max_position_a(t_ps_data *d)
-{
-	int		i;
-	int		max_pos;
-	long	max_val;
-	int		size;
-
-	i = 1;
-	max_pos = 1;
-	size = ft_lstsize(d->pile_a);
-	max_val = get_a(d, 1);
-	while (i <= size)
-	{
-		if (get_a(d, i) > max_val)
-		{
-			max_val = get_a(d, i);
-			max_pos = i;
-		}
-		i++;
-	}
-	return (max_pos);
-}
-
-int	find_max_position(t_ps_data *d, char c)
-{
-	int		i;
-	int		max_pos;
-	long	max_val;
-	int		size;
-
-	if (c == 'a')
-		return (find_max_position_a(d));
-	i = 1;
-	max_pos = 1;
-	size = ft_lstsize(d->pile_b);
-	max_val = get_b(d, 1);
-	while (i <= size)
-	{
-		if (get_b(d, i) > max_val)
-		{
-			max_val = get_b(d, i);
-			max_pos = i;
-		}
-		i++;
-	}
-	return (max_pos);
 }
 
 static int	find_target_position(t_ps_data *d, int val, int size_a)
@@ -103,8 +55,50 @@ t_pile_info	init_pile_info(t_ps_data *d, int pos)
 	info.size_b = ft_lstsize(d->pile_b);
 	info.min_a = get_min(d->pile_a);
 	info.max_a = get_max(d->pile_a);
-	info.source_pos = pos;
+	info.pos = pos;
 	val = get_b(d, pos);
 	info.target_pos = find_target_position(d, val, info.size_a);
 	return (info);
+}
+
+int	get_first_chunk(int chunk, t_ps_data *d)
+{
+	t_list	*tmp;
+	long	min;
+	int		i;
+	int		res;
+
+	tmp = d->pile_a;
+	min = (long)tmp->content;
+	i = 1;
+	while (tmp != NULL)
+	{
+		if (is_in_current_chunk(d, chunk, i))
+			res = i;
+		if (is_in_current_chunk(d, chunk, i))
+			break ;
+		tmp = tmp->next;
+		i++;
+	}
+	return (res);
+}
+
+int	get_last_chunk(int chunk, t_ps_data *d)
+{
+	t_list	*tmp;
+	long	max;
+	int		i;
+	int		res;
+
+	tmp = d->pile_a;
+	max = (long)tmp->content;
+	i = 1;
+	while (tmp != NULL)
+	{
+		if (is_in_current_chunk(d, chunk, i))
+			res = i;
+		tmp = tmp->next;
+		i++;
+	}
+	return (res);
 }

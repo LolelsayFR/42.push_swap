@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:58:58 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/01 04:18:47 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/03 05:55:28 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,13 @@ int	main(int ac, char **av)
 int	comp_max(int a, int b)
 {
 	if (a > b)
+		return (a);
+	return (b);
+}
+
+int	comp_min(int a, int b)
+{
+	if (a < b)
 		return (a);
 	return (b);
 }

@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 16:47:57 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/01 07:57:15 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/03 06:51:09 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,11 @@ static int	in_chunk_count(t_ps_data *d, int chunk)
 
 int	ps_ra_or_rra(t_ps_data *d, int chunk)
 {
-	int		i;
 	int		pos;
 	int		size;
-	long	start;
 
-	start = d->min + ((chunk - 1) * d->chunk_size);
-	i = 1;
-	pos = 1;
+	pos = get_first_chunk(chunk, d);
 	size = ft_lstsize(d->pile_a);
-	while (i <= size)
-	{
-		if (get_a(d, i) >= start && get_a(d, i) < start + d->chunk_size)
-		{
-			pos = i;
-			break ;
-		}
-		i++;
-	}
 	if ((ft_lstsize(d->pile_b) > 1 && get_b(d, 1) < get_b(d, 2)))
 		return (ps_rr(d), 1);
 	else if (pos != 1 && pos <= (size * 3) / 7)

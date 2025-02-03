@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:30:49 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/01 05:48:33 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/03 06:05:58 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_pile_info
 	long	min_a;
 	long	max_a;
 	int		target_pos;
-	int		source_pos;
+	int		pos;
 }	t_pile_info;
 
 typedef struct s_cost
@@ -68,9 +68,8 @@ int			init_minmax(t_ps_data *data);
 t_pile_info	init_pile_info(t_ps_data *d, int pos);
 long		get_min(t_list *lst);
 long		get_max(t_list *lst);
+int			comp_min(int a, int b);
 int			comp_max(int a, int b);
-int			calculate_position_cost(t_ps_data *d, int pos);
-t_cost		find_best_position(t_ps_data *d);
 
 //Push swap instructions
 int			ps_sa(t_ps_data *d);
@@ -95,5 +94,6 @@ void		ps_sort(t_ps_data *d);
 void		ps_chunk_to_b(t_ps_data *d);
 void		ps_to_a(t_ps_data *d);
 int			is_in_current_chunk(t_ps_data *d, int chunk_num, int i);
-int			find_max_position(t_ps_data *d, char c);
+int			get_last_chunk(int chunk, t_ps_data *d);
+int			get_first_chunk(int chunk, t_ps_data *d);
 #endif
