@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:30:49 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/03 06:05:58 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/04 11:28:34 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,6 @@ typedef struct s_ps_data
 	int		chunk;
 }	t_ps_data;
 
-typedef struct s_pile_info
-{
-	int		size_a;
-	int		size_b;
-	long	min_a;
-	long	max_a;
-	int		target_pos;
-	int		pos;
-}	t_pile_info;
-
-typedef struct s_cost
-{
-	int		pos;
-	int		total_cost;
-}	t_cost;
-
 //Push swap init and utils
 char		**ft_spacer_split_lst(char const *s);
 long		ft_ps_atol(const char *str,	t_list **lst);
@@ -65,7 +49,6 @@ int			lst_is_sorted(t_list *lst, int order);
 long		get_a(t_ps_data *d, int i);
 long		get_b(t_ps_data *d, int i);
 int			init_minmax(t_ps_data *data);
-t_pile_info	init_pile_info(t_ps_data *d, int pos);
 long		get_min(t_list *lst);
 long		get_max(t_list *lst);
 int			comp_min(int a, int b);
@@ -91,9 +74,4 @@ void		sort_three(t_ps_data *d);
 void		sort_four(t_ps_data *d);
 void		sort_five(t_ps_data *d);
 void		ps_sort(t_ps_data *d);
-void		ps_chunk_to_b(t_ps_data *d);
-void		ps_to_a(t_ps_data *d);
-int			is_in_current_chunk(t_ps_data *d, int chunk_num, int i);
-int			get_last_chunk(int chunk, t_ps_data *d);
-int			get_first_chunk(int chunk, t_ps_data *d);
 #endif
