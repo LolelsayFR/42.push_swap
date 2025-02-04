@@ -6,7 +6,11 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:30:49 by emaillet          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/02/04 11:28:34 by emaillet         ###   ########.fr       */
+=======
+/*   Updated: 2025/02/04 15:41:00 by emaillet         ###   ########.fr       */
+>>>>>>> 0aff9c0 (Not redraw, go back to my chunk)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +43,19 @@ typedef struct s_ps_data
 	int		chunk;
 }	t_ps_data;
 
+<<<<<<< HEAD
+=======
+typedef struct s_pile_info
+{
+	int		size_a;
+	int		size_b;
+	long	min_a;
+	long	max_a;
+	int		target_pos;
+	int		pos;
+}	t_pile_info;
+
+>>>>>>> 0aff9c0 (Not redraw, go back to my chunk)
 //Push swap init and utils
 char		**ft_spacer_split_lst(char const *s);
 long		ft_ps_atol(const char *str,	t_list **lst);
@@ -74,4 +91,18 @@ void		sort_three(t_ps_data *d);
 void		sort_four(t_ps_data *d);
 void		sort_five(t_ps_data *d);
 void		ps_sort(t_ps_data *d);
+<<<<<<< HEAD
+=======
+void		ps_chunk_to_b(t_ps_data *d);
+void		ps_to_a(t_ps_data *d);
+int			is_in_current_chunk(t_ps_data *d, int chunk_num, int i);
+int			get_last_chunk(int chunk, t_ps_data *d);
+int			get_first_chunk(int chunk, t_ps_data *d);
+void		ps_realign(t_ps_data *d);
+void		ps_realign_pos(t_ps_data *d, int pos);
+int			find_min_position(t_ps_data *d);
+int			find_position(t_list *stack, long value);
+long		get_max_value(t_list *stack);
+void		align_rotate(t_ps_data *d, int apos, int bpos);
+>>>>>>> 0aff9c0 (Not redraw, go back to my chunk)
 #endif

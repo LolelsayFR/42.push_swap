@@ -6,7 +6,11 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 16:47:57 by emaillet          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/02/04 11:17:12 by emaillet         ###   ########.fr       */
+=======
+/*   Updated: 2025/02/04 15:58:47 by emaillet         ###   ########.fr       */
+>>>>>>> 0aff9c0 (Not redraw, go back to my chunk)
 /*                                                                            */
 /* ************************************************************************** */
 

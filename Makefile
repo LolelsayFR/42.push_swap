@@ -9,6 +9,7 @@ SRC				=	script/main.c\
 					script/ps_both.c\
 					script/ps_utils.c\
 					script/ps_utils_2.c\
+					script/ps_utils_3.c\
 					script/ps_algo.c\
 					script/ps_sort.c\
 					script/ps_sort_2.c\
