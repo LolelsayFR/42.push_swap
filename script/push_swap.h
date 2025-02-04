@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:30:49 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/04 17:16:15 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:20:00 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,6 @@ typedef struct s_ps_data
 	int		chunk_size;
 	int		chunk;
 }	t_ps_data;
-
-typedef struct s_pile_info
-{
-	int		size_a;
-	int		size_b;
-	long	min_a;
-	long	max_a;
-	int		target_pos;
-	int		pos;
-}	t_pile_info;
 
 //Push swap init and utils
 char		**ft_spacer_split_lst(char const *s);
@@ -90,9 +80,4 @@ int			is_in_current_chunk(t_ps_data *d, int chunk_num, int i);
 int			get_last_chunk(int chunk, t_ps_data *d);
 int			get_first_chunk(int chunk, t_ps_data *d);
 void		ps_realign(t_ps_data *d);
-void		ps_realign_pos(t_ps_data *d, int pos);
-int			find_min_position(t_ps_data *d);
-int			find_position(t_list *stack, long value);
-long		get_max_value(t_list *stack);
-void		align_rotate(t_ps_data *d, int apos, int bpos);
 #endif
