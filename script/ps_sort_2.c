@@ -6,19 +6,12 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 17:06:27 by emaillet          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/02/04 11:22:30 by emaillet         ###   ########.fr       */
-=======
-/*   Updated: 2025/02/04 17:09:40 by emaillet         ###   ########.fr       */
->>>>>>> 0aff9c0 (Not redraw, go back to my chunk)
+/*   Updated: 2025/02/04 17:16:35 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-<<<<<<< HEAD
-
-=======
 int	get_second_max_pos(t_list *lst)
 {
 	t_list	*tmp;
@@ -111,4 +104,3 @@ void	ps_to_a(t_ps_data *d)
 	}
 	ps_realign(d);
 }
->>>>>>> 0aff9c0 (Not redraw, go back to my chunk)

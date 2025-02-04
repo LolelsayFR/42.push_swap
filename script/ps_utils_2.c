@@ -6,19 +6,12 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 23:26:21 by emaillet          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/02/04 11:25:53 by emaillet         ###   ########.fr       */
-=======
-/*   Updated: 2025/02/04 15:29:35 by emaillet         ###   ########.fr       */
->>>>>>> 0aff9c0 (Not redraw, go back to my chunk)
+/*   Updated: 2025/02/04 17:15:37 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-<<<<<<< HEAD
-long	get_min(t_list *lst)
-=======
 int	is_in_current_chunk(t_ps_data *d, int chunk_num, int i)
 {
 	long	start;
@@ -33,66 +26,39 @@ int	is_in_current_chunk(t_ps_data *d, int chunk_num, int i)
 }
 
 int	get_first_chunk(int chunk, t_ps_data *d)
->>>>>>> 0aff9c0 (Not redraw, go back to my chunk)
 {
 	t_list	*tmp;
 	int		i;
 	int		res;
 
-<<<<<<< HEAD
-	tmp = lst;
-	min = (long)tmp->content;
-=======
 	tmp = d->pile_a;
->>>>>>> 0aff9c0 (Not redraw, go back to my chunk)
 	i = 1;
 	while (tmp != NULL)
 	{
-		if ((long)tmp->content < min)
+		if (is_in_current_chunk(d, chunk, i))
 			res = i;
-		if ((long)tmp->content < min)
-			min = (long)tmp->content;
+		if (is_in_current_chunk(d, chunk, i))
+			break ;
 		tmp = tmp->next;
 		i++;
 	}
 	return (res);
 }
 
-long	get_max(t_list *lst)
+int	get_last_chunk(int chunk, t_ps_data *d)
 {
 	t_list	*tmp;
 	int		i;
 	int		res;
 
-<<<<<<< HEAD
-	tmp = lst;
-	max = (long)tmp->content;
-=======
 	tmp = d->pile_a;
->>>>>>> 0aff9c0 (Not redraw, go back to my chunk)
 	i = 1;
 	while (tmp != NULL)
 	{
-		if ((long)tmp->content > max)
+		if (is_in_current_chunk(d, chunk, i))
 			res = i;
-		if ((long)tmp->content > max)
-			max = (long)tmp->content;
 		tmp = tmp->next;
 		i++;
 	}
 	return (res);
-}
-
-t_list	*ft_lst_get_prev(t_list *lst, t_list *head)
-{
-	t_list	*tmp;
-
-	tmp = head;
-	while (tmp != NULL)
-	{
-		if (tmp->next > lst)
-			return (tmp);
-		tmp = tmp->next;
-	}
-	return (tmp);
 }
