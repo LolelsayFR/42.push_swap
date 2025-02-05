@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 22:36:53 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/04 16:44:08 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/05 07:14:35 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,10 @@ long	get_b(t_ps_data *d, int i)
 {
 	t_list	*tmp;
 
+	if (i == 0)
+		return ((long)ft_lstlast(d->pile_b)->content);
 	tmp = d->pile_b;
-	if (!d->pile_b || i > ft_lstsize(d->pile_b))
+	if (!d->pile_b || i > ft_lstsize(d->pile_b) || i < 0)
 		return (RETURN_ERROR);
 	while (--i && tmp != NULL)
 		tmp = tmp->next;
@@ -90,8 +92,10 @@ long	get_a(t_ps_data *d, int i)
 {
 	t_list	*tmp;
 
+	if (i == 0)
+		return ((long)ft_lstlast(d->pile_a)->content);
 	tmp = d->pile_a;
-	if (!d->pile_a || i > ft_lstsize(d->pile_a))
+	if (!d->pile_a || i > ft_lstsize(d->pile_a) || i < 0)
 		return (RETURN_ERROR);
 	while (--i && tmp != NULL)
 		tmp = tmp->next;

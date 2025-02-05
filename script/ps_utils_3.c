@@ -6,7 +6,7 @@
 /*   By: LolelsayFR <emaillet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:56:40 by LolelsayFR        #+#    #+#             */
-/*   Updated: 2025/02/04 16:16:48 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/05 04:48:40 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ long	get_min(t_list *lst)
 	int		res;
 
 	if (!lst || !lst->next)
-		return (0);
+		return (1);
 	tmp = lst;
 	min = (long)tmp->content;
 	i = 1;
@@ -44,7 +44,7 @@ long	get_max(t_list *lst)
 	int		res;
 
 	if (!lst || !lst->next)
-		return (0);
+		return (1);
 	tmp = lst;
 	max = (long)tmp->content;
 	i = 1;
@@ -60,25 +60,67 @@ long	get_max(t_list *lst)
 	return (res);
 }
 
-void	ps_realign(t_ps_data *d)
+static void	rot_finish_a(t_ps_data *d, int rot_a)
 {
-	int	minpos;
-
-	minpos = get_min(d->pile_a);
-	if (minpos <= ft_lstsize(d->pile_b) / 2)
+	if (rot_a <= ft_lstsize(d->pile_a) / 2)
 	{
-		while (minpos > 0)
+		while (rot_a > 1)
 		{
-			ps_rb(d);
-			minpos--;
+			ps_ra(d);
+			rot_a--;
 		}
 	}
 	else
 	{
-		while (minpos < ft_lstsize(d->pile_b))
+		while (rot_a <= ft_lstsize(d->pile_a))
 		{
-			ps_rrb(d);
-			minpos++;
+			ps_rra(d);
+			rot_a++;
 		}
 	}
+}
+
+static void	rot_finish_b(t_ps_data *d, int rot_b)
+{
+	if (rot_b <= ft_lstsize(d->pile_b) / 2)
+	{
+		while (rot_b > 1)
+		{
+			ps_rb(d);
+			rot_b--;
+		}
+	}
+	else
+	{
+		while (rot_b <= ft_lstsize(d->pile_b))
+		{
+			ps_rrb(d);
+			rot_b++;
+		}
+	}
+}
+
+void	rotate_both(t_ps_data *d, int rot_a, int rot_b)
+{
+	if (rot_a <= ft_lstsize(d->pile_a) / 2
+		|| rot_b <= ft_lstsize(d->pile_b) / 2)
+	{
+		while (rot_a > 1 && rot_b > 1)
+		{
+			ps_rr(d);
+			rot_b--;
+			rot_a--;
+		}
+	}
+	else
+	{
+		while (rot_a <= ft_lstsize(d->pile_a) && rot_b <= ft_lstsize(d->pile_b))
+		{
+			ps_rrr(d);
+			rot_b++;
+			rot_a++;
+		}
+	}
+	rot_finish_a(d, rot_a);
+	rot_finish_b(d, rot_b);
 }

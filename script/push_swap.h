@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:30:49 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/04 17:20:00 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/05 03:23:25 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ typedef struct s_ps_data
 {
 	t_list	*pile_a;
 	t_list	*pile_b;
-	t_list	*actions;
-	t_list	*logs;
 	char	**my_av;
 	long	min;
 	long	max;
@@ -79,5 +77,6 @@ void		ps_to_a(t_ps_data *d);
 int			is_in_current_chunk(t_ps_data *d, int chunk_num, int i);
 int			get_last_chunk(int chunk, t_ps_data *d);
 int			get_first_chunk(int chunk, t_ps_data *d);
-void		ps_realign(t_ps_data *d);
+void		rotate_both(t_ps_data *d, int rot_a, int rot_b);
+
 #endif

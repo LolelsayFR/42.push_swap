@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 04:07:02 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/24 18:29:39 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/05 05:15:14 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ long	ft_ps_atol(const char *str, t_list **lst)
 	long	sign;
 	long	i;
 
-	if (!str || (!ft_isdigit(str[0]) && str[1] == '\0'))
+	if (!str || (!ft_isdigit(str[0]) && str[1] == '\0') || ft_strlen(str) > 12)
 		ko(lst);
 	val = 0;
 	sign = 1;
