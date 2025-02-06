@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 16:47:57 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/05 02:34:29 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/06 07:52:18 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,7 @@ void	ps_chunk_to_b(t_ps_data *d)
 	while (ft_lstsize(d->pile_a) > 5)
 	{
 		if (is_in_current_chunk(d, chunk, 1))
-		{
 			ps_pb(d);
-		}
 		else
 		{
 			if (!in_chunk_count(d, chunk))
