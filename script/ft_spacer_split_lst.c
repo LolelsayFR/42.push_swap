@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:52:01 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/24 16:35:54 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:56:54 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,26 +97,9 @@ int	init_minmax(t_ps_data *data)
 			data->min = (long)stack->content;
 		stack = stack->next;
 	}
+	get_fifth_max(data, data->pile_a);
 	if (PS_DEBUG)
-		ft_printfd(1, YEL"Min = %d \nMax = %d\n\n"RES, data->min, data->max);
+		ft_printfd(1, YEL"Min = %d \nMax = %d\nFIFTH = %d\n"RES,
+			data->min, data->max, data->top_five[4]);
 	return (RETURN_SUCCESS);
 }
-
-//int	main(int argc, char *argv[])
-//{
-//	char	**splited;
-//
-//	splited = NULL;
-//	if (argc == 2)
-//	{
-//		splited = ft_split(argv[1], ' ');
-//		while (*splited != NULL)
-//		{
-//			ft_putendl_fd(*splited, 1);
-//			free(*splited);
-//			splited++;
-//		}
-//		free(splited);
-//	}
-//	return (1);
-//}

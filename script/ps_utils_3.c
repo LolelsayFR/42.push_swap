@@ -6,7 +6,7 @@
 /*   By: LolelsayFR <emaillet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:56:40 by LolelsayFR        #+#    #+#             */
-/*   Updated: 2025/02/05 04:48:40 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:18:58 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ long	get_min(t_list *lst)
 	int		res;
 
 	if (!lst || !lst->next)
-		return (1);
+		return (0);
 	tmp = lst;
 	min = (long)tmp->content;
 	i = 1;
@@ -44,7 +44,7 @@ long	get_max(t_list *lst)
 	int		res;
 
 	if (!lst || !lst->next)
-		return (1);
+		return (0);
 	tmp = lst;
 	max = (long)tmp->content;
 	i = 1;

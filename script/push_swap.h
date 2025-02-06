@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:30:49 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/05 03:23:25 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:04:32 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_ps_data
 	char	**my_av;
 	long	min;
 	long	max;
+	long	top_five[5];
 	int		chunk_size;
 	int		chunk;
 }	t_ps_data;
@@ -51,6 +52,8 @@ long		get_min(t_list *lst);
 long		get_max(t_list *lst);
 int			comp_min(int a, int b);
 int			comp_max(int a, int b);
+void		get_fifth_max(t_ps_data *d, t_list *lst);
+int			is_top_five(t_ps_data *d, int value);
 
 //Push swap instructions
 int			ps_sa(t_ps_data *d);

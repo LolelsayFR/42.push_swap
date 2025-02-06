@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 16:47:57 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/06 07:52:18 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:24:08 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,27 @@ void	ps_chunk_to_b(t_ps_data *d)
 				ps_ra_or_rra(d, chunk);
 		}
 	}
+}
+
+int	get_first_chunk(int chunk, t_ps_data *d)
+{
+	t_list	*tmp;
+	int		i;
+	int		res;
+
+	tmp = d->pile_a;
+	i = 1;
+	res = -1;
+	while (tmp != NULL)
+	{
+		if (is_in_current_chunk(d, chunk, i)
+			&& !(is_top_five(d, (long)get_a(d, i))))
+		{
+			res = i;
+			break ;
+		}
+		tmp = tmp->next;
+		i++;
+	}
+	return (res);
 }

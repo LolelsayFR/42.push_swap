@@ -6,26 +6,27 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 17:06:27 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/06 08:33:12 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:13:43 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	get_target(t_ps_data *d, int pos_b)
+int	get_target(t_ps_data *d, long value_b)
 {
 	int	pos_a;
 
-	pos_a = ft_lstsize(d->pile_a);
-	if (get_b(d, pos_b) > get_a(d, get_max(d->pile_a))
-		|| get_b(d, pos_b) < get_a(d, get_min(d->pile_a)))
+	pos_a = 1;
+	if (pos_a == 0)
+		return (1);
+	if (value_b > get_a(d, get_max(d->pile_a))
+		|| value_b < get_a(d, get_min(d->pile_a)))
 		return (get_min(d->pile_a));
-	while (pos_a > 1)
+	while (pos_a <= ft_lstsize(d->pile_a))
 	{
-		if (get_a(d, pos_a) > get_b(d, pos_b)
-			&& get_a(d, pos_a - 1) < get_b(d, pos_b))
+		if (get_a(d, pos_a) > value_b && get_a(d, pos_a - 1) < value_b)
 			break ;
-		pos_a--;
+		pos_a++;
 	}
 	return (pos_a);
 }
@@ -34,13 +35,17 @@ int	get_target(t_ps_data *d, int pos_b)
 
 void	ps_to_a(t_ps_data *d)
 {
-	int	target;
+	int		target;
+	int		b_pos;
+	long	b_value;
 
 	sort_five(d);
 	while (ft_lstsize(d->pile_b) > 0)
 	{
-		target = get_target(d, 1);
-		rotate_both(d, target, 1);
+		b_pos = get_max(d->pile_b);
+		b_value = get_b(d, b_pos);
+		target = get_target(d, b_value);
+		rotate_both(d, target, b_pos);
 		ps_pa(d);
 	}
 	rotate_both(d, get_min(d->pile_a), 1);
