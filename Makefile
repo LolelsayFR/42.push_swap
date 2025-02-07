@@ -17,7 +17,7 @@ SRC				=	script/main.c\
 LIBFT_PATH		=	./modules/42.libft
 LIBFT			=	$(LIBFT_PATH)/libft.a
 
-CFLAGS			=	-Wall -Werror -Wextra -g
+CFLAGS			=	-Wall -Werror -Wextra -g -O0
 
 all:	hello $(NAME)
 
