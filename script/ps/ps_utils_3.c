@@ -6,61 +6,11 @@
 /*   By: LolelsayFR <emaillet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:56:40 by LolelsayFR        #+#    #+#             */
-/*   Updated: 2025/02/07 08:48:55 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/07 15:47:38 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-long	get_min(t_list *lst)
-{
-	t_list	*tmp;
-	long	min;
-	int		i;
-	int		res;
-
-	if (!lst || !lst->next)
-		return (1);
-	tmp = lst;
-	min = (long)tmp->content;
-	i = 1;
-	res = 1;
-	while (tmp != NULL && i <= ft_lstsize(lst))
-	{
-		if ((long)tmp->content < min)
-			res = i;
-		if ((long)tmp->content < min)
-			min = (long)tmp->content;
-		tmp = tmp->next;
-		i++;
-	}
-	return (res);
-}
-
-long	get_max(t_list *lst)
-{
-	t_list	*tmp;
-	long	max;
-	int		i;
-	int		res;
-
-	if (!lst || !lst->next)
-		return (1);
-	tmp = lst;
-	max = (long)tmp->content;
-	i = 1;
-	res = 1;
-	while (tmp != NULL && i <= ft_lstsize(lst))
-	{
-		if ((long)tmp->content > max)
-			res = i;
-		if ((long)tmp->content > max)
-			max = (long)tmp->content;
-		tmp = tmp->next;
-		i++;
-	}
-	return (res);
-}
 
 static void	rot_finish_a(t_ps_data *d, int rot_a)
 {
@@ -102,6 +52,35 @@ static void	rot_finish_b(t_ps_data *d, int rot_b)
 	}
 }
 
+void	rotate_both_utils(t_ps_data *d, int *rot_a, int *rot_b)
+{
+	const int	size_a = ft_lstsize(d->pile_a);
+	const int	size_b = ft_lstsize(d->pile_b);
+
+	if ((*rot_a <= size_a / 2 && *rot_b > (size_b / 5) * 2
+			&& *rot_b < (size_b / 5) * 3) || (*rot_b <= size_b / 2
+			&& *rot_b > (size_b / 5) * 2 && *rot_b < (size_b / 5) * 3))
+	{
+		while (*rot_a > 1 && *rot_b > 1)
+		{
+			ps_rr(d);
+			rot_b--;
+			rot_a--;
+		}
+	}
+	else if ((*rot_a > size_a / 2 && *rot_b > (size_b / 5) * 2
+			&& *rot_b < (size_b / 5) * 3) || (*rot_b > size_b / 2
+			&& *rot_b > (size_b / 5) * 2 && *rot_b < (size_b / 5) * 3))
+	{
+		while (*rot_a <= size_a && *rot_b <= size_b)
+		{
+			ps_rrr(d);
+			rot_b++;
+			rot_a++;
+		}
+	}
+}
+
 void	rotate_both(t_ps_data *d, int rot_a, int rot_b)
 {
 	if (rot_a <= ft_lstsize(d->pile_a) / 2
@@ -124,6 +103,8 @@ void	rotate_both(t_ps_data *d, int rot_a, int rot_b)
 			rot_a++;
 		}
 	}
+	else
+		rotate_both_utils(d, &rot_a, &rot_b);
 	rot_finish_a(d, rot_a);
 	rot_finish_b(d, rot_b);
 }

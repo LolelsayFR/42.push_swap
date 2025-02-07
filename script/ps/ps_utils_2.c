@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 23:26:21 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/06 12:22:42 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/07 15:22:21 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,19 @@ void	get_fifth_max(t_ps_data *d, t_list *lst)
 		insert_fifth_max(d, value);
 		tmp = tmp->next;
 	}
+}
+
+int	lst_is_sorted(t_list *lst, int order)
+{
+	t_list	*tmp;
+
+	tmp = lst;
+	while (tmp != NULL)
+	{
+		if (tmp->next != NULL
+			&& (long)tmp->content * order > (long)tmp->next->content * order)
+			return (RETURN_ERROR);
+		tmp = tmp->next;
+	}
+	return (RETURN_SUCCESS);
 }

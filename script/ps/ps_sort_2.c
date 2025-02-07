@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 17:06:27 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/07 11:39:42 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/07 15:18:28 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,22 @@ int	get_target(t_ps_data *d, int b_pos)
 
 int	get_cost(t_ps_data *d, int pos_b)
 {
-	int	cost;
-	int	target;
+	int			cost;
+	int			target;
+	const int	size_a = ft_lstsize(d->pile_a);
+	const int	size_b = ft_lstsize(d->pile_b);
 
 	target = get_target(d, pos_b);
-	if (pos_b <= ft_lstsize(d->pile_b) / 2
-		&& target <= ft_lstsize(d->pile_a) / 2)
+	if (pos_b <= size_b / 2 && target <= size_a / 2)
 		return (comp_max(target, pos_b));
-	else if (pos_b > ft_lstsize(d->pile_b) / 2
-		&& target > ft_lstsize(d->pile_a) / 2)
-		return (comp_max(ft_lstsize(d->pile_a) - target,
-				ft_lstsize(d->pile_b) - pos_b));
+	else if (pos_b > size_b / 2 && target > size_a / 2)
+		return (comp_max(size_a - target, size_b - pos_b) + 1);
 	else
 	{
-		if (target > ft_lstsize(d->pile_a) / 2)
-			target = ft_lstsize(d->pile_a) - target;
-		if (pos_b > ft_lstsize(d->pile_b) / 2)
-			pos_b = ft_lstsize(d->pile_b) - pos_b;
+		if (target > size_a / 2)
+			target = size_a - target;
+		if (pos_b > size_b / 2)
+			pos_b = size_b - pos_b;
 		cost = target + pos_b;
 	}
 	return (cost);
@@ -56,9 +55,7 @@ int	get_cost(t_ps_data *d, int pos_b)
 
 void	ps_to_a(t_ps_data *d)
 {
-	int		target;
 	int		b_pos;
-	int		b_cost;
 	int		i;
 	t_list	*tmp;
 
@@ -68,16 +65,14 @@ void	ps_to_a(t_ps_data *d)
 		tmp = d->pile_b;
 		i = 1;
 		b_pos = get_max(d->pile_b);
-		b_cost = get_cost(d, b_pos);
 		while (i < ft_lstsize(d->pile_b))
 		{
-			if (get_cost(d, i) < b_cost)
+			if (get_cost(d, i) < get_cost(d, b_pos))
 				b_pos = i;
 			i++;
 			tmp = tmp->next;
 		}
-		target = get_target(d, b_pos);
-		rotate_both(d, target, b_pos);
+		rotate_both(d, get_target(d, b_pos), b_pos);
 		ps_pa(d);
 	}
 	rotate_both(d, get_min(d->pile_a), 1);

@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 01:26:21 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/07 08:02:36 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/07 14:40:09 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ void	sort_five(t_ps_data *d)
 void	ps_sort(t_ps_data *d)
 {
 	if (ft_lstsize(d->pile_a) > 300)
-		d->chunk_size = 40;
+		d->chunk_size = (ft_lstsize(d->pile_a) - 5) / 10;
 	else
-		d->chunk_size = 18;
+		d->chunk_size = (ft_lstsize(d->pile_a) - 5) / 5;
 	ps_chunk_to_b(d);
 	ps_to_a(d);
 }

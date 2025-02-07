@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 22:36:53 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/07 11:11:19 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/07 15:22:47 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,6 @@ void	ft_lstprintfd_ps(t_list *list_a, t_list *list_b, int fd)
 	}
 }
 
-int	lst_is_sorted(t_list *lst, int order)
-{
-	t_list	*tmp;
-
-	tmp = lst;
-	while (tmp != NULL)
-	{
-		if (tmp->next != NULL
-			&& (long)tmp->content * order > (long)tmp->next->content * order)
-			return (RETURN_ERROR);
-		tmp = tmp->next;
-	}
-	return (RETURN_SUCCESS);
-}
-
 long	get_b(t_ps_data *d, int i)
 {
 	t_list	*tmp;
@@ -82,4 +67,54 @@ long	get_a(t_ps_data *d, int i)
 	while (--i && tmp != NULL)
 		tmp = tmp->next;
 	return ((long)tmp->content);
+}
+
+long	get_min(t_list *lst)
+{
+	t_list	*tmp;
+	long	min;
+	int		i;
+	int		res;
+
+	if (!lst || !lst->next)
+		return (1);
+	tmp = lst;
+	min = (long)tmp->content;
+	i = 1;
+	res = 1;
+	while (tmp != NULL && i <= ft_lstsize(lst))
+	{
+		if ((long)tmp->content < min)
+			res = i;
+		if ((long)tmp->content < min)
+			min = (long)tmp->content;
+		tmp = tmp->next;
+		i++;
+	}
+	return (res);
+}
+
+long	get_max(t_list *lst)
+{
+	t_list	*tmp;
+	long	max;
+	int		i;
+	int		res;
+
+	if (!lst || !lst->next)
+		return (1);
+	tmp = lst;
+	max = (long)tmp->content;
+	i = 1;
+	res = 1;
+	while (tmp != NULL && i <= ft_lstsize(lst))
+	{
+		if ((long)tmp->content > max)
+			res = i;
+		if ((long)tmp->content > max)
+			max = (long)tmp->content;
+		tmp = tmp->next;
+		i++;
+	}
+	return (res);
 }
