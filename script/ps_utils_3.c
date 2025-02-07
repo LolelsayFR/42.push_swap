@@ -6,13 +6,13 @@
 /*   By: LolelsayFR <emaillet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:56:40 by LolelsayFR        #+#    #+#             */
-/*   Updated: 2025/02/06 12:18:58 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/07 05:35:35 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long	get_min(t_list *lst)
+int	get_min(t_list *lst)
 {
 	t_list	*tmp;
 	long	min;
@@ -20,23 +20,24 @@ long	get_min(t_list *lst)
 	int		res;
 
 	if (!lst || !lst->next)
-		return (0);
+		return (1);
 	tmp = lst;
 	min = (long)tmp->content;
 	i = 1;
 	while (tmp != NULL)
 	{
 		if ((long)tmp->content < min)
+		{
 			res = i;
-		if ((long)tmp->content < min)
 			min = (long)tmp->content;
+		}
 		tmp = tmp->next;
 		i++;
 	}
 	return (res);
 }
 
-long	get_max(t_list *lst)
+int	get_max(t_list *lst)
 {
 	t_list	*tmp;
 	long	max;
@@ -44,16 +45,17 @@ long	get_max(t_list *lst)
 	int		res;
 
 	if (!lst || !lst->next)
-		return (0);
+		return (1);
 	tmp = lst;
 	max = (long)tmp->content;
 	i = 1;
 	while (tmp != NULL)
 	{
 		if ((long)tmp->content > max)
+		{
 			res = i;
-		if ((long)tmp->content > max)
 			max = (long)tmp->content;
+		}
 		tmp = tmp->next;
 		i++;
 	}

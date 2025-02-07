@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 17:06:27 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/06 11:13:43 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/07 05:37:14 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,14 @@ int	get_target(t_ps_data *d, long value_b)
 {
 	int	pos_a;
 
-	pos_a = 1;
-	if (pos_a == 0)
-		return (1);
-	if (value_b > get_a(d, get_max(d->pile_a))
-		|| value_b < get_a(d, get_min(d->pile_a)))
+	if (value_b < get_a(d, get_min(d->pile_a)))
 		return (get_min(d->pile_a));
-	while (pos_a <= ft_lstsize(d->pile_a))
+	pos_a = ft_lstsize(d->pile_a);
+	while (pos_a > 1)
 	{
 		if (get_a(d, pos_a) > value_b && get_a(d, pos_a - 1) < value_b)
 			break ;
-		pos_a++;
+		pos_a--;
 	}
 	return (pos_a);
 }
