@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_spacer_split_lst.c                              :+:      :+:    :+:   */
+/*   ps_spacer_split_lst.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:52:01 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/06 11:56:54 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/07 11:02:43 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ps/push_swap.h"
 
 static void	ft_freeall(char **result, size_t j)
 {
@@ -80,26 +80,4 @@ char	**ft_spacer_split_lst(char const *s)
 	result = ft_splitinject(s, result);
 	ft_lstadd_back(ft_alist(), ft_lstnew(result));
 	return (result);
-}
-
-int	init_minmax(t_ps_data *data)
-{
-	t_list		*stack;
-
-	stack = data->pile_a;
-	data->max = (long)stack->content;
-	data->min = data->max;
-	while (stack != NULL)
-	{
-		if ((long)stack->content > data->max)
-			data->max = (long)stack->content;
-		if ((long)stack->content < data->min)
-			data->min = (long)stack->content;
-		stack = stack->next;
-	}
-	get_fifth_max(data, data->pile_a);
-	if (PS_DEBUG)
-		ft_printfd(1, YEL"Min = %d \nMax = %d\nFIFTH = %d\n"RES,
-			data->min, data->max, data->top_five[4]);
-	return (RETURN_SUCCESS);
 }

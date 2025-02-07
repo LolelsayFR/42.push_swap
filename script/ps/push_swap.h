@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:30:49 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/07 07:11:18 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/07 11:12:20 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include "../modules/42.libft/libft.h"
+# include "../../modules/42.libft/libft.h"
 
 # define RED  "\x1B[31m"
 # define GRN  "\x1B[32m"
@@ -42,7 +42,6 @@ typedef struct s_ps_data
 char		**ft_spacer_split_lst(char const *s);
 long		ft_ps_atol(const char *str,	t_list **lst);
 void		ft_lstprintfd_ps(t_list *list_a, t_list *list_b, int fd);
-int			pre_check(char **av);
 void		set_zero(void *i);
 int			lst_is_sorted(t_list *lst, int order);
 long		get_a(t_ps_data *d, int i);
@@ -50,7 +49,6 @@ long		get_b(t_ps_data *d, int i);
 int			init_minmax(t_ps_data *data);
 long		get_min(t_list *lst);
 long		get_max(t_list *lst);
-int			comp_min(int a, int b);
 int			comp_max(int a, int b);
 void		get_fifth_max(t_ps_data *d, t_list *lst);
 int			is_top_five(t_ps_data *d, int value);
@@ -78,7 +76,6 @@ void		ps_sort(t_ps_data *d);
 void		ps_chunk_to_b(t_ps_data *d);
 void		ps_to_a(t_ps_data *d);
 int			is_in_current_chunk(t_ps_data *d, int chunk_num, int i);
-int			get_last_chunk(int chunk, t_ps_data *d);
 int			get_first_chunk(int chunk, t_ps_data *d);
 void		rotate_both(t_ps_data *d, int rot_a, int rot_b);
 

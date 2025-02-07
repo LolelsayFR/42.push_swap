@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 22:36:53 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/05 07:14:35 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/07 11:11:19 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,24 +54,6 @@ int	lst_is_sorted(t_list *lst, int order)
 		tmp = tmp->next;
 	}
 	return (RETURN_SUCCESS);
-}
-
-int	pre_check(char **av)
-{
-	int	i;
-
-	i = 1;
-	if (PS_DEBUG == 1)
-		ft_printfd(1, GRN"\nPush swap args :\n"RES);
-	while (av[i])
-	{
-		if (PS_DEBUG == 1)
-			ft_printfd(1, "%s\n", av[i]);
-		i++;
-	}
-	if (PS_DEBUG == 1)
-		ft_printfd(1, GRN"End of Push swap args..\n\n"RES);
-	return (0);
 }
 
 long	get_b(t_ps_data *d, int i)

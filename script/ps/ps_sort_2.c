@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 17:06:27 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/07 08:48:18 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/07 11:39:42 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	ps_to_a(t_ps_data *d)
 {
 	int		target;
 	int		b_pos;
+	int		b_cost;
 	int		i;
 	t_list	*tmp;
 
@@ -67,9 +68,10 @@ void	ps_to_a(t_ps_data *d)
 		tmp = d->pile_b;
 		i = 1;
 		b_pos = get_max(d->pile_b);
+		b_cost = get_cost(d, b_pos);
 		while (i < ft_lstsize(d->pile_b))
 		{
-			if (get_cost(d, i) < get_cost(d, b_pos))
+			if (get_cost(d, i) < b_cost)
 				b_pos = i;
 			i++;
 			tmp = tmp->next;

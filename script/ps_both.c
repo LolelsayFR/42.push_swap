@@ -6,11 +6,11 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 00:33:00 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/24 17:01:38 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/07 11:02:28 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ps/push_swap.h"
 
 int	ps_ss(t_ps_data *d)
 {
