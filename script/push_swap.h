@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:30:49 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/07 05:30:14 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/07 05:39:56 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ long		get_b(t_ps_data *d, int i);
 int			init_minmax(t_ps_data *data);
 int			get_min(t_list *lst);
 int			get_max(t_list *lst);
-int			comp_min(int a, int b);
-int			comp_max(int a, int b);
 void		get_fifth_max(t_ps_data *d, t_list *lst);
 int			is_top_five(t_ps_data *d, int value);
 
