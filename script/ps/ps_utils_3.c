@@ -6,7 +6,7 @@
 /*   By: LolelsayFR <emaillet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:56:40 by LolelsayFR        #+#    #+#             */
-/*   Updated: 2025/02/07 15:47:38 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/09 15:05:15 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,17 @@ void	rotate_both(t_ps_data *d, int rot_a, int rot_b)
 		rotate_both_utils(d, &rot_a, &rot_b);
 	rot_finish_a(d, rot_a);
 	rot_finish_b(d, rot_b);
+}
+
+int	can_push(t_ps_data *d, int pos_a, int pos_b)
+{
+	const long	min_a = get_min(d->pile_a);
+
+	if (get_b(d, pos_b) < get_a(d, min_a)
+		&& get_a(d, 1) == get_a(d, min_a))
+		return (1);
+	if (get_a(d, pos_a) > get_b(d, pos_b)
+		&& get_a(d, pos_a - 1) < get_b(d, pos_b))
+		return (1);
+	return (0);
 }

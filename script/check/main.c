@@ -6,11 +6,12 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:58:58 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/07 11:16:41 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/09 16:14:02 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ps/push_swap.h"
+#include <unistd.h>
 
 int	pre_check(char **av, t_ps_data *d)
 {
@@ -53,8 +54,20 @@ int	lst_is_sorted(t_list *lst, int order)
 
 static void	ft_push_swap_check(t_ps_data *d)
 {
+	char	*buf;
+	char	*str;
+	int		i;
+
 	(void)d;
+	buf = ft_calloc(1, sizeof(char));
+	str = ft_calloc(1, sizeof(char));
+	ft_lstadd_back(ft_alist(), ft_lstnew(str));
 	ft_printf(RED"test\n"RES);
+	i = 1;
+	i = read(1, buf, 1);
+	str = ft_strjoin_lst(str, buf);
+	ft_printf(YEL"%s"RES, str);
+	free(buf);
 }
 
 int	main(int ac, char **av)

@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 17:06:27 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/07 15:18:28 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/09 15:18:15 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ int	get_target(t_ps_data *d, int b_pos)
 	int			pos_a;
 	const int	value_b = get_b(d, b_pos);
 
-	if (value_b < get_a(d, get_min(d->pile_a))
-		&& value_b < get_a(d, get_max(d->pile_a)))
+	if (value_b < get_a(d, get_min(d->pile_a)))
 		return (get_min(d->pile_a));
 	pos_a = ft_lstsize(d->pile_a);
 	while (pos_a > 1)
@@ -34,20 +33,18 @@ int	get_cost(t_ps_data *d, int pos_b)
 {
 	int			cost;
 	int			target;
-	const int	size_a = ft_lstsize(d->pile_a);
-	const int	size_b = ft_lstsize(d->pile_b);
 
 	target = get_target(d, pos_b);
-	if (pos_b <= size_b / 2 && target <= size_a / 2)
+	if (pos_b <= d->size_b / 2 && target <= d->size_a / 2)
 		return (comp_max(target, pos_b));
-	else if (pos_b > size_b / 2 && target > size_a / 2)
-		return (comp_max(size_a - target, size_b - pos_b) + 1);
+	else if (pos_b > d->size_b / 2 && target > d->size_a / 2)
+		return (comp_max(d->size_a - target, d->size_b - pos_b));
 	else
 	{
-		if (target > size_a / 2)
-			target = size_a - target;
-		if (pos_b > size_b / 2)
-			pos_b = size_b - pos_b;
+		if (target > d->size_a / 2)
+			target = d->size_a - target;
+		if (pos_b > d->size_b / 2)
+			pos_b = d->size_b - pos_b;
 		cost = target + pos_b;
 	}
 	return (cost);
@@ -62,6 +59,9 @@ void	ps_to_a(t_ps_data *d)
 	sort_five(d);
 	while (ft_lstsize(d->pile_b) > 0)
 	{
+		d->min_a = get_min(d->pile_a);
+		d->size_a = ft_lstsize(d->pile_a);
+		d->size_b = ft_lstsize(d->pile_b);
 		tmp = d->pile_b;
 		i = 1;
 		b_pos = get_max(d->pile_b);
@@ -73,7 +73,8 @@ void	ps_to_a(t_ps_data *d)
 			tmp = tmp->next;
 		}
 		rotate_both(d, get_target(d, b_pos), b_pos);
-		ps_pa(d);
+		if (can_push(d, 1, 1) == 1)
+			ps_pa(d);
 	}
 	rotate_both(d, get_min(d->pile_a), 1);
 }

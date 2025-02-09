@@ -27,7 +27,7 @@ all:	$(NAME) info
 
 debug:	$(D_NAME) d_info
 
-bonus:	$(B_NAME) info
+bonus:	$(B_NAME) b_info
 
 hello:
 	@echo "\e[48;2;100;0;100;1m Welcome to PushSwap Makefile !\e[0m\n"
