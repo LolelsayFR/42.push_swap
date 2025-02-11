@@ -6,7 +6,7 @@
 /*   By: LolelsayFR <emaillet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:56:40 by LolelsayFR        #+#    #+#             */
-/*   Updated: 2025/02/11 09:07:51 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/11 23:16:11 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	rot_finish_a(t_ps_data *d, int rot_a)
 	}
 }
 
-static void	rot_finish_b(t_ps_data *d, int rot_b)
+static void	rot_finish_b_and_push(t_ps_data *d, int rot_b)
 {
 	if (rot_b <= d->size_b / 2)
 	{
@@ -50,6 +50,8 @@ static void	rot_finish_b(t_ps_data *d, int rot_b)
 			rot_b++;
 		}
 	}
+	if (can_push(d, 1, 1) == 1)
+		ps_pa(d);
 }
 
 void	rotate_both_utils(t_ps_data *d, int *rot_a, int *rot_b)
@@ -103,7 +105,7 @@ void	rotate_both(t_ps_data *d, int rot_a, int rot_b)
 	else
 		rotate_both_utils(d, &rot_a, &rot_b);
 	rot_finish_a(d, rot_a);
-	rot_finish_b(d, rot_b);
+	rot_finish_b_and_push(d, rot_b);
 }
 
 int	can_push(t_ps_data *d, int pos_a, int pos_b)

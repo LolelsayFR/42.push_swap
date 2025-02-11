@@ -21,7 +21,7 @@ B_SRC				=	script/check/main.c\
 LIBFT_PATH		=	./modules/42.libft
 LIBFT			=	$(LIBFT_PATH)/libft.a
 
-CFLAGS			=	-Wall -Werror -Wextra -g -Ofast
+CFLAGS			=	-Wall -Werror -Wextra -Ofast
 
 all:	$(NAME) info
 

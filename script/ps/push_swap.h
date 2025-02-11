@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:30:49 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/11 11:21:39 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/11 23:17:45 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_ps_data
 	long	top_five[5];
 	int		chunk_size;
 	int		chunk;
+	int		best_cost;
 }	t_ps_data;
 
 //Push swap init and utils
@@ -60,6 +61,7 @@ int			comp_max(int a, int b);
 void		get_fifth_max(t_ps_data *d, t_list *lst);
 int			is_top_five(t_ps_data *d, int value);
 int			can_push(t_ps_data *d, int pos_a, int pos_b);
+int			get_cost(t_ps_data *d, int pos_b);
 
 //Push swap instructions
 int			ps_sa(t_ps_data *d);
@@ -82,7 +84,7 @@ void		sort_four(t_ps_data *d);
 void		sort_five(t_ps_data *d);
 void		ps_sort(t_ps_data *d);
 void		ps_chunk_to_b(t_ps_data *d);
-void		ps_to_a(t_ps_data *d);
+void		ps_to_a(t_ps_data *d, int i, int cost, int i_cost);
 int			is_in_current_chunk(t_ps_data *d, int chunk_num, int i);
 int			get_first_chunk(int chunk, t_ps_data *d);
 void		rotate_both(t_ps_data *d, int rot_a, int rot_b);

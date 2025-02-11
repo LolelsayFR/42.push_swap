@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 17:06:27 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/11 09:09:24 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/11 23:17:26 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	get_target(t_ps_data *d, int b_pos)
 
 	if (value_b < get_a(d, get_min(d->pile_a)))
 		return (get_min(d->pile_a));
-	pos_a = ft_lstsize(d->pile_a);
+	pos_a = d->size_a;
 	while (pos_a > 1)
 	{
 		if (get_a(d, pos_a) > value_b && get_a(d, pos_a - 1) < value_b)
@@ -51,13 +51,11 @@ int	get_cost(t_ps_data *d, int pos_b)
 		return (cost_a + cost_b);
 }
 
-void	ps_to_a(t_ps_data *d)
+void	ps_to_a(t_ps_data *d, int i, int cost, int i_cost)
 {
 	int		b_pos;
-	int		i;
 	t_list	*tmp;
 
-	sort_five(d);
 	while (ft_lstsize(d->pile_b) > 0)
 	{
 		d->min_a = get_min(d->pile_a);
@@ -66,16 +64,18 @@ void	ps_to_a(t_ps_data *d)
 		tmp = d->pile_b;
 		i = 1;
 		b_pos = get_max(d->pile_b);
+		cost = get_cost(d, b_pos);
 		while (i <= d->size_b)
 		{
-			if (get_cost(d, i) < get_cost(d, b_pos))
+			i_cost = get_cost(d, i);
+			if (i_cost < cost)
+			{
 				b_pos = i;
+				cost = i_cost;
+			}
 			i++;
 			tmp = tmp->next;
 		}
 		rotate_both(d, get_target(d, b_pos), b_pos);
-		if (can_push(d, 1, 1) == 1)
-			ps_pa(d);
 	}
-	rotate_both(d, get_min(d->pile_a), 1);
 }
