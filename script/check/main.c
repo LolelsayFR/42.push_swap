@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:58:58 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/11 11:57:01 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:03:00 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,7 @@ int	main(int ac, char **av)
 	while (d->my_av[i])
 		if (d->my_av[i][0])
 			ft_ps_atol(d->my_av[i++], &d->pile_a);
-	if (lst_is_sorted(d->pile_a, 1) == RETURN_ERROR)
-		ft_push_swap_check(d);
+	ft_push_swap_check(d);
 	ft_lstclear(&d->pile_a, set_zero);
 	ft_lstclear(&d->pile_b, set_zero);
 	ft_alist_free();
