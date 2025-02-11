@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:30:49 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/09 11:08:02 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/11 11:21:39 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # ifndef PS_DEBUG
 #  define PS_DEBUG 0
+# endif
+
+# ifndef PS_CHECKER
+#  define PS_CHECKER 0
 # endif
 
 # include <unistd.h>

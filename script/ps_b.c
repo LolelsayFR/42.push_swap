@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 22:38:02 by emaillet          #+#    #+#             */
-/*   Updated: 2025/01/24 18:39:52 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/11 11:23:40 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	ps_sb(t_ps_data *d)
 	if (ft_lstsize(d->pile_b) == 1)
 		return (RETURN_ERROR);
 	ft_lst_swap(&d->pile_b, &d->pile_b->next);
-	ft_printfd(1, "sb\n");
+	if (PS_CHECKER == 0)
+		ft_printfd(1, "sb\n");
 	return (RETURN_SUCCESS);
 }
 
@@ -31,7 +32,8 @@ int	ps_pb(t_ps_data *d)
 	d->pile_a->next = d->pile_b;
 	d->pile_b = d->pile_a;
 	d->pile_a = new_head;
-	ft_printfd(1, "pb\n");
+	if (PS_CHECKER == 0)
+		ft_printfd(1, "pb\n");
 	return (RETURN_SUCCESS);
 }
 
@@ -40,7 +42,8 @@ int	ps_rb(t_ps_data *d)
 	if (ft_lstsize(d->pile_b) == 1)
 		return (RETURN_ERROR);
 	ft_lst_rotate(&d->pile_b, 1);
-	ft_printfd(1, "rb\n");
+	if (PS_CHECKER == 0)
+		ft_printfd(1, "rb\n");
 	return (RETURN_SUCCESS);
 }
 
@@ -49,7 +52,8 @@ int	ps_rrb(t_ps_data *d)
 	if (ft_lstsize(d->pile_b) == 1)
 		return (RETURN_ERROR);
 	ft_lst_unrotate(&d->pile_b, 1);
-	ft_printfd(1, "rrb\n");
+	if (PS_CHECKER == 0)
+		ft_printfd(1, "rrb\n");
 	return (RETURN_SUCCESS);
 }
 

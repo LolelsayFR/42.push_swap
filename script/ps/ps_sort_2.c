@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 17:06:27 by emaillet          #+#    #+#             */
-/*   Updated: 2025/02/09 15:18:15 by emaillet         ###   ########.fr       */
+/*   Updated: 2025/02/11 09:09:24 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,24 @@ int	get_target(t_ps_data *d, int b_pos)
 
 int	get_cost(t_ps_data *d, int pos_b)
 {
-	int			cost;
 	int			target;
+	int			cost_a;
+	int			cost_b;
 
 	target = get_target(d, pos_b);
-	if (pos_b <= d->size_b / 2 && target <= d->size_a / 2)
-		return (comp_max(target, pos_b));
-	else if (pos_b > d->size_b / 2 && target > d->size_a / 2)
-		return (comp_max(d->size_a - target, d->size_b - pos_b));
+	if (pos_b <= d->size_b / 2)
+		cost_b = pos_b;
 	else
-	{
-		if (target > d->size_a / 2)
-			target = d->size_a - target;
-		if (pos_b > d->size_b / 2)
-			pos_b = d->size_b - pos_b;
-		cost = target + pos_b;
-	}
-	return (cost);
+		cost_b = d->size_b - pos_b;
+	if (target <= d->size_a / 2)
+		cost_a = target;
+	else
+		cost_a = d->size_a - target;
+	if ((pos_b <= d->size_b / 2 && target <= d->size_a / 2)
+		|| (pos_b > d->size_b / 2 && target > d->size_a / 2))
+		return (comp_max(cost_a, cost_b));
+	else
+		return (cost_a + cost_b);
 }
 
 void	ps_to_a(t_ps_data *d)
@@ -65,7 +66,7 @@ void	ps_to_a(t_ps_data *d)
 		tmp = d->pile_b;
 		i = 1;
 		b_pos = get_max(d->pile_b);
-		while (i < ft_lstsize(d->pile_b))
+		while (i <= d->size_b)
 		{
 			if (get_cost(d, i) < get_cost(d, b_pos))
 				b_pos = i;

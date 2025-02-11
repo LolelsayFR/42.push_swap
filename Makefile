@@ -58,7 +58,7 @@ $(D_NAME): ${LIBFT} ${FTPRINTF} ${MINILIBX} ${GNL} ${SRC} ${PS_SRC}
 
 $(B_NAME): ${LIBFT} ${FTPRINTF} ${MINILIBX} ${GNL} ${SRC} ${B_SRC}
 	@echo "\e[48;2;0;155;0;1m Compile D_Push_Swap \e[0m\n"
-	cc ${SRC} ${B_SRC} ${LIBFT} ${CFLAGS} -o $(B_NAME)
+	cc ${SRC} ${B_SRC} -D PS_CHECKER=1 ${LIBFT} ${CFLAGS} -o $(B_NAME)
 	@echo "\e[48;2;0;0;155;1m Done \e[0m\n"
 
 $(LIBFT):
