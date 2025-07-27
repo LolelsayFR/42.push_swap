@@ -24,13 +24,11 @@ Cela permet de réduire le nombre total d’opérations, mais augmente significa
 **Limite :**
 - Temps de calcul croissant avec la taille de la pile, à cause de la recherche des mouvements les plus efficients pour chaque chunk
 
-## Test de complexité
-
-Pour mesurer la performance du programme, le Complexity tester de [SimonCROS/push_swap_tester](https://github.com/SimonCROS/push_swap_tester) a été utilisé.
-
 ## Benchmarks et visualisation
 
-Des benchmarks ont été réalisés à l’aide du script Complexity tester pour mesurer la performance et l’efficacité de l’algorithme sur différentes tailles de piles.
+Des benchmarks ont été réalisés pour mesurer la performance et l’efficacité de l’algorithme sur différentes tailles de piles.
+
+Pour mesurer la performance du programme, le Complexity tester de [SimonCROS/push_swap_tester](https://github.com/SimonCROS/push_swap_tester) a été utilisé.
 
 Pour mieux comprendre le déroulement du tri et les mouvements effectués, le projet a également été testé avec [Push swap visualizer](https://github.com/o-reo/push_swap_visualizer).  
 Cet outil permet de visualiser en temps réel les opérations et de vérifier la cohérence du tri généré par l’algorithme.
